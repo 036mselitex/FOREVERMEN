@@ -43,7 +43,7 @@ switch ($accion) {
 
     case 'btnModificar':
 
-        $editartalla = $conn->prepare(" UPDATE talla SET nombre_talla = '$nombre_talla' , 
+        $editartalla = $conn->prepare(" UPDATE talla SET nombre_talla = '$nombre_talla' 
         WHERE id_talla = '$id_talla' ");
 
 
@@ -60,7 +60,7 @@ switch ($accion) {
         
 
         $eliminartalla = $conn->prepare(" DELETE FROM talla
-        WHERE id_talla = '$id_talla' ");
+        WHERE id_talla; nombre_talla = '$id_talla' '$nombre_talla' ");
 
         // $consultaFoto->execute();
         $eliminartalla->execute();

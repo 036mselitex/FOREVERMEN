@@ -43,7 +43,7 @@ switch ($accion) {
 
     case 'btnModificar':
 
-        $editartipo_producto = $conn->prepare(" UPDATE tipo_producto SET nombre_tipodeproducto = '$nombre_tipodeproducto' , 
+        $editartipo_producto = $conn->prepare(" UPDATE tipo_producto SET nombre_tipodeproducto = '$nombre_tipodeproducto' 
         WHERE id_tipodeproducto = '$id_tipodeproducto' ");
 
 
@@ -60,7 +60,7 @@ switch ($accion) {
         
 
         $eliminartipo_producto = $conn->prepare(" DELETE FROM tipo_producto
-        WHERE id_tipodeproducto= '$id_tipodeproducto' ");
+        WHERE id_tipodeproducto= '$id_tipodeproducto', ");
 
         // $consultaFoto->execute();
         $eliminartipo_producto->execute();

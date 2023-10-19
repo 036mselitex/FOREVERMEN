@@ -45,7 +45,7 @@ switch ($accion) {
     case 'btnModificar':
 
         $editarproveedor = $conn->prepare(" UPDATE proveedor SET nombre_proveedor = '$nombre_proveedor' , 
-        id_departamento = '$id_departamento',
+        id_departamento = '$id_departamento'
         WHERE id_proveedor = '$id_proveedor' ");
 
 

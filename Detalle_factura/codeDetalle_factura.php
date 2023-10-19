@@ -45,7 +45,7 @@ switch ($accion) {
 
     case 'btnModificar':
 
-        $editardetalle_factura = $conn->prepare(" UPDATE detalle_factura SET id_factura = '$id_factura' , 
+        $editardetalle_factura = $conn->prepare(" UPDATE detalle_factura SET id_factura = '$id_factura'
         id_producto = '$id_producto', cantidad = '$cantidad',
         WHERE id_cliente = '$id_cliente' ");
 

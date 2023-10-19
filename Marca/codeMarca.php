@@ -42,7 +42,7 @@ switch ($accion) {
 
     case 'btnModificar':
 
-        $editarmarca = $conn->prepare(" UPDATE marca SET nombre_marca = '$nombre_marca' , 
+        $editarmarca = $conn->prepare(" UPDATE marca SET nombre_marca = '$nombre_marca' 
         WHERE id_marca = '$id_marca' ");
 
 

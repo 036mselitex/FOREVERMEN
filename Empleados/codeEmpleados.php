@@ -7,11 +7,11 @@ include("../Conexion/conexion.php");
 
 
 //Recibimos las variables enviadas
-$txtId = (isset($_POST['txtId'])) ? $_POST['txtId'] : "";
-$txtNombre = (isset($_POST['txtNombre'])) ? $_POST['txtNombre'] : "";
-$txtApellidoP = (isset($_POST['txtApellidoP'])) ? $_POST['txtApellidoP'] : "";
-$txtApellidoM = (isset($_POST['txtApellidoM'])) ? $_POST['txtApellidoM'] : "";
-$txtCorreo = (isset($_POST['txtCorreo'])) ? $_POST['txtCorreo'] : "";
+$id = (isset($_POST['id'])) ? $_POST['id'] : "";
+$nombre = (isset($_POST['nombre'])) ? $_POST['nombre'] : "";
+$apellidoP = (isset($_POST['apellidoP'])) ? $_POST['apellidoP'] : "";
+$apellidoM = (isset($_POST['apellidoM'])) ? $_POST['apellidoM'] : "";
+$correo = (isset($_POST['correo'])) ? $_POST['correo'] : "";
 
 $foto = (isset($_FILES['foto']["name"])) ? $_FILES['foto']["name"] : "";
 
@@ -47,9 +47,9 @@ switch ($accion) {
                 ->prepare nos prepara la sentencia SQL para que inyecte los valores a la BD.
                 */
                 $insercionEmpleados = $conn->prepare(
-                    "INSERT INTO empleados(nombre, apellidoP, 
+                    "INSERT INTO empleados(id, nombre, apellidoP, 
                 apellidoM, correo, foto) 
-                VALUES ('$txtNombre','$txtApellidoP','$txtApellidoM','$txtCorreo','$foto')"
+                VALUES ('$id','$nombre','$apellidoP','$apellidoM','$correo','$foto')"
                 );
 
 
@@ -78,13 +78,13 @@ switch ($accion) {
 
     case 'btnModificar':
 
-        $editarEmpleados = $conn->prepare(" UPDATE empleados SET nombre = '$txtNombre' , 
-        apellidoP = '$txtApellidoP', apellidoM = '$txtApellidoM', correo = '$txtCorreo'
-        WHERE id = '$txtId' ");
+        $editarEmpleados = $conn->prepare(" UPDATE empleados SET nombre = '$nombre' , 
+        apellidoP = '$apellidoP', apellidoM = '$apellidoM', correo = '$correo'
+        WHERE id = '$id' ");
 
         /* Aca solo esta actualizando la fotografia */
         $editarEmpleadosFoto = $conn->prepare(" UPDATE empleados SET  foto = '$foto'
-        WHERE id = '$txtId' ");
+        WHERE id = '$id' ");
 
 
         $fecha = new DateTime();
@@ -121,7 +121,7 @@ switch ($accion) {
         WHERE id = '$txtId' "); */
 
         $eliminarEmpleado = $conn->prepare(" DELETE FROM empleados
-        WHERE id = '$txtId' ");
+        WHERE id = '$id' ");
 
         // $consultaFoto->execute();
         $eliminarEmpleado->execute();

@@ -42,7 +42,7 @@ switch ($accion) {
 
     case 'btnModificar':
 
-        $editardepartamento = $conn->prepare(" UPDATE departamento SET nombre_departamento = '$nombre_departamento' , 
+        $editardepartamento = $conn->prepare(" UPDATE departamento SET nombre_departamento = '$nombre_departamento' 
         WHERE id_departamento = '$id_departamento' ");
 
 
