@@ -120,20 +120,7 @@
                 </a>
 
             </li>
-            <hr class="sidebar-divider my-0">
 
-            <div class="sidebar-heading">
-                Detalle de la factura
-            </div>
-
-            <!--Menu Empleados -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../Detalle_factura/index.php" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-regular fa-envelope-open"></i>
-                    <span>Detalle de la factura</span>
-                </a>
-
-            </li>
             <hr class="sidebar-divider my-0">
 
             <div class="sidebar-heading">
@@ -148,20 +135,7 @@
                 </a>
 
             </li>
-            <hr class="sidebar-divider my-0">
-
-            <div class="sidebar-heading">
-                Marca/Proveedor
-            </div>
-
-            <!--Menu Empleados -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="../Marca_proveedor/index.php" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fab fa-brands fa-redhat"></i>
-                    <span>Marca/Proveedor</span>
-                </a>
-
-            </li>
+            
             <hr class="sidebar-divider my-0">
 
             <div class="sidebar-heading">

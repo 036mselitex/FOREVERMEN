@@ -28,6 +28,12 @@
 
                             <div class="form-row">
 
+                            <div class="form-group col-md-12">
+                                    <label for="txtCorreo">Producto</label>
+                                    <input type="text" class="form-control" require name="id_producto" id="id_producto" placeholder="" value="<?php echo $id_producto ?>">
+                                    
+                                </div>
+
 
                                 <div class="form-group col-md-12">
 
@@ -81,7 +87,7 @@
 
 
                                 <div class="form-group col-md-12">
-                                    <label for="txtApellidoP">Precio del producto </label>
+                                    <label for="txtApellidoP">Precio</label>
                                     <input type="text" class="form-control" require name="precio" id="precio" placeholder="" value="<?php echo $precio ?>">
 
                                 </div>
@@ -109,14 +115,27 @@
 
                                 </div>
 
+                               <div class="form-group col-md-12">
 
-                                <div class="form-group col-md-12">
-                                    <label for="txtCorreo">Producto</label>
-                                    <input type="text" class="form-control" require name="id_producto" id="id_producto" placeholder="" value="<?php echo $id_producto ?>">
-                                    <br>
-                                </div>
+                                    <label for="id_proveedor">Proveedor</label>
 
 
+                                    <select name="id_proveedor" id="id_proveedor" class="form-control">
+
+                                        <?php
+
+                                        if ($listaProveedor->num_rows > 0) {
+                                            foreach ($listaProveedor as $proveedor) {
+                                                echo " <option value='' hidden > Seleccione el Proveedor</option> ";
+                                                echo " <option value='{$proveedor['id_proveedor']}'> {$proveedor['id_proveedor']} {$proveedor['nombre_proveedor']} </option> ";
+                                            }
+                                        } else {
+
+                                            echo "<h2> No tenemos resultados </h2>";
+                                        }
+                                        ?>
+                                    </select>
+                                    </div>
 
 
 
@@ -159,11 +178,12 @@
 
                     <tr>
 
+                        <th scope="col">Numero del producto</th>
                         <th scope="col">Numero de la marca</th>
                         <th scope="col">Numero de la talla</th>
                         <th scope="col">Precio del producto</th>
                         <th scope="col">Tipo de producto</th>
-                        <th scope="col">Producto</th>
+                        <th scope="col">Proveedor</th>
 
                         <th scope="col">Seleccionar</th>
                         <th scope="col">Eliminar</th>
@@ -183,22 +203,23 @@
                             <tr>
 
 
-
+                                <td> <?php echo $producto['id_producto']    ?> </td>
                                 <td> <?php echo $producto['id_marca']        ?> </td>
                                 <td> <?php echo $producto['id_talla']    ?> </td>
                                 <td> <?php echo $producto['precio'] ?> </td>
                                 <td> <?php echo $producto['id_tipodeproducto'] ?> </td>
-                                <td> <?php echo $producto['id_producto']    ?> </td>
+                                <td> <?php echo $producto['id_proveedor']    ?> </td>
 
 
                                 <!-- Este Formulario se utiliza para editar los registros -->
                                 <form action="" method="post">
 
+                                  <input type="hidden" name="id_producto" value="<?php echo $producto['id_producto'];  ?>">
                                     <input type="hidden" name="id_marca" value="<?php echo $producto['id_marca'];  ?>">
                                     <input type="hidden" name="id_talla" value="<?php echo $producto['id_talla'];  ?>">
                                     <input type="hidden" name="precio" value="<?php echo $producto['precio'];  ?>">
                                     <input type="hidden" name="id_tipodeproducto" value="<?php echo $producto['id_tipodeproducto'];  ?>">
-                                    <input type="hidden" name="id_producto" value="<?php echo $producto['id_producto'];  ?>">
+                                    <input type="hidden" name="id_proveedor" value="<?php echo $producto['id_proveedor'];  ?>">
 
 
                                     <td><input type="submit" class="btn btn-info" value="Seleccionar"></td>

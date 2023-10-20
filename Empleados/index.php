@@ -28,12 +28,13 @@
 
                             <div class="form-row">
 
-                               <div class="form-group col-md-12">
-                                 <label for="txtId">Id</label> 
-                                <input type="text"  class="form-control" require name="id" id="id" placeholder="" value="<?php echo $id ?>">
-                                <br> 
-                                </div>  
+                            <div class="form-group col-md-12">
+                                    <label for="nombre">Identificación</label>
+                                    <input type="text" class="form-control" require name="id" id="id" placeholder="" value="<?php echo $id ?>">
+                                    <br>
+                                </div>        
 
+                            
                                 <div class="form-group col-md-12">
                                     <label for="nombre">Nombre(s)</label>
                                     <input type="text" class="form-control" require name="nombre" id="nombre" placeholder="" value="<?php echo $nombre ?>">

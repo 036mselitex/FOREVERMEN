@@ -7,11 +7,12 @@ include("../Conexion/conexion.php");
 
 
 //Recibimos las variables enviadas
+$id_producto = (isset($_POST['id_producto'])) ? $_POST['id_producto'] : "";
 $id_marca = (isset($_POST['id_marca'])) ? $_POST['id_marca'] : "";
 $id_talla = (isset($_POST['id_talla'])) ? $_POST['id_talla'] : "";
 $precio = (isset($_POST['precio'])) ? $_POST['precio'] : "";
 $id_tipodeproducto = (isset($_POST['id_tipodeproducto'])) ? $_POST['id_tipodeproducto'] : "";
-$id_producto = (isset($_POST['id_producto'])) ? $_POST['id_producto'] : "";
+$id_proveedor = (isset($_POST['id_proveedor'])) ? $_POST['id_proveedor'] : "";
 
 
 
@@ -28,8 +29,8 @@ switch ($accion) {
                 */
 
                 $insercionproducto = $conn->prepare(
-                "INSERT INTO producto (id_marca, id_talla, precio, id_tipodeproducto,id_producto) 
-                VALUES ('$id_marca','$id_talla','$precio','$id_tipodeproducto','$id_producto')"
+                "INSERT INTO producto (id_producto,id_marca, id_talla, precio, id_tipodeproducto,id_proveedor) 
+                VALUES ('$id_producto','$id_marca','$id_talla','$precio','$id_tipodeproducto','$id_proveedor')"
              );
 
 
@@ -46,7 +47,7 @@ switch ($accion) {
     case 'btnModificar':
 
         $editarproducto = $conn->prepare(" UPDATE producto SET id_marca = '$id_marca' , 
-        id_talla = '$id_talla', precio = '$precio', id_tipodeproducto = '$id_tipodeproducto'
+        id_talla = '$id_talla', precio = '$precio', id_tipodeproducto = '$id_tipodeproducto', id_proveedor = '$id_proveedor'
         WHERE id_producto = '$id_producto' ");
 
 
@@ -100,6 +101,10 @@ $listaTalla = $consultatalla->get_result();
 $consultatipo_producto = $conn->prepare("SELECT * FROM tipo_producto");
 $consultatipo_producto->execute();
 $listaTipo_producto = $consultatipo_producto->get_result();
+
+$consultaproveedor = $conn->prepare("SELECT * FROM proveedor");
+$consultaproveedor->execute();
+$listaProveedor = $consultaproveedor->get_result();
 
 $conn->close();
 

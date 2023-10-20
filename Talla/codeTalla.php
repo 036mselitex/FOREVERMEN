@@ -60,7 +60,7 @@ switch ($accion) {
         
 
         $eliminartalla = $conn->prepare(" DELETE FROM talla
-        WHERE id_talla; nombre_talla = '$id_talla' '$nombre_talla' ");
+        WHERE id_talla = '$id_talla'");
 
         // $consultaFoto->execute();
         $eliminartalla->execute();

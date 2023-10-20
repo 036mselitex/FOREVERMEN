@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2023 a las 00:07:27
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Servidor: localhost
+-- Tiempo de generación: 20-10-2023 a las 19:23:15
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,14 +33,7 @@ CREATE TABLE `clientes` (
   `apellido_cliente` varchar(30) NOT NULL,
   `telefono_cliente` varchar(100) NOT NULL,
   `direccion_cliente` varchar(125) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `clientes`
---
-
-INSERT INTO `clientes` (`id_cliente`, `nombre_cliente`, `apellido_cliente`, `telefono_cliente`, `direccion_cliente`) VALUES
-(133445, 'mariana', 'suares', '35591584555', 'bosques');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -51,7 +44,7 @@ INSERT INTO `clientes` (`id_cliente`, `nombre_cliente`, `apellido_cliente`, `tel
 CREATE TABLE `departamento` (
   `id_departamento` int(11) NOT NULL,
   `nombre_departamento` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `departamento`
@@ -60,26 +53,6 @@ CREATE TABLE `departamento` (
 INSERT INTO `departamento` (`id_departamento`, `nombre_departamento`) VALUES
 (1, 'armenia'),
 (2, 'bogota');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `detalle_factura`
---
-
-CREATE TABLE `detalle_factura` (
-  `id_detalle` int(11) NOT NULL,
-  `id_factura` int(11) NOT NULL,
-  `id_producto` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `detalle_factura`
---
-
-INSERT INTO `detalle_factura` (`id_detalle`, `id_factura`, `id_producto`, `cantidad`) VALUES
-(12, 0, 8, 1);
 
 -- --------------------------------------------------------
 
@@ -94,14 +67,7 @@ CREATE TABLE `empleados` (
   `apellidoM` varchar(250) NOT NULL,
   `correo` varchar(100) NOT NULL,
   `foto` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `empleados`
---
-
-INSERT INTO `empleados` (`id`, `nombre`, `apellidoP`, `apellidoM`, `correo`, `foto`) VALUES
-(0, 'Angel', 'Ortiz', '', 'melvarosa27@gmail.com', 'imagen.jpg');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -114,15 +80,10 @@ CREATE TABLE `factura` (
   `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `id_empleado` bigint(20) NOT NULL,
   `id_cliente` bigint(20) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
   `detalle` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `factura`
---
-
-INSERT INTO `factura` (`id_factura`, `fecha`, `id_empleado`, `id_cliente`, `detalle`) VALUES
-(0, '2023-10-15 21:50:07', 0, 133445, 'compra de una camiseta nike color negra');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -133,7 +94,7 @@ INSERT INTO `factura` (`id_factura`, `fecha`, `id_empleado`, `id_cliente`, `deta
 CREATE TABLE `marca` (
   `id_marca` int(11) NOT NULL,
   `nombre_marca` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `marca`
@@ -154,51 +115,17 @@ INSERT INTO `marca` (`id_marca`, `nombre_marca`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `marca_proveedor`
---
-
-CREATE TABLE `marca_proveedor` (
-  `id_marca_proveedor` int(11) NOT NULL,
-  `id_marca` int(11) NOT NULL,
-  `id_talla` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `marca_proveedor`
---
-
-INSERT INTO `marca_proveedor` (`id_marca_proveedor`, `id_marca`, `id_talla`) VALUES
-(1, 1, 1);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `producto`
 --
 
 CREATE TABLE `producto` (
+  `id_producto` int(11) NOT NULL,
   `id_marca` int(11) NOT NULL,
   `id_talla` int(11) NOT NULL,
   `precio` float NOT NULL,
   `id_tipodeproducto` int(11) NOT NULL,
-  `id_producto` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `producto`
---
-
-INSERT INTO `producto` (`id_marca`, `id_talla`, `precio`, `id_tipodeproducto`, `id_producto`) VALUES
-(1, 2, 67000, 1, 1),
-(2, 1, 55000, 2, 2),
-(8, 4, 85000, 3, 3),
-(5, 6, 70000, 4, 4),
-(4, 2, 35000, 5, 5),
-(7, 1, 110000, 6, 6),
-(2, 5, 50000, 7, 7),
-(1, 6, 300000, 8, 8),
-(6, 2, 220000, 9, 9),
-(9, 5, 350000, 1, 10);
+  `id_proveedor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -210,14 +137,7 @@ CREATE TABLE `proveedor` (
   `id_proveedor` int(11) NOT NULL,
   `nombre_proveedor` varchar(100) NOT NULL,
   `id_departamento` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `proveedor`
---
-
-INSERT INTO `proveedor` (`id_proveedor`, `nombre_proveedor`, `id_departamento`) VALUES
-(4, 'potpa', 1);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -228,7 +148,7 @@ INSERT INTO `proveedor` (`id_proveedor`, `nombre_proveedor`, `id_departamento`) 
 CREATE TABLE `talla` (
   `id_talla` int(11) NOT NULL,
   `nombre_talla` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `talla`
@@ -251,7 +171,7 @@ INSERT INTO `talla` (`id_talla`, `nombre_talla`) VALUES
 CREATE TABLE `tipo_producto` (
   `id_tipodeproducto` int(11) NOT NULL,
   `nombre_tipodeproducto` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tipo_producto`
@@ -285,14 +205,6 @@ ALTER TABLE `departamento`
   ADD PRIMARY KEY (`id_departamento`);
 
 --
--- Indices de la tabla `detalle_factura`
---
-ALTER TABLE `detalle_factura`
-  ADD PRIMARY KEY (`id_detalle`),
-  ADD KEY `id_factura` (`id_factura`),
-  ADD KEY `id_producto` (`id_producto`);
-
---
 -- Indices de la tabla `empleados`
 --
 ALTER TABLE `empleados`
@@ -304,7 +216,8 @@ ALTER TABLE `empleados`
 ALTER TABLE `factura`
   ADD PRIMARY KEY (`id_factura`),
   ADD KEY `id_empleado` (`id_empleado`),
-  ADD KEY `id_cliente` (`id_cliente`);
+  ADD KEY `id_cliente` (`id_cliente`),
+  ADD KEY `id_producto` (`id_producto`);
 
 --
 -- Indices de la tabla `marca`
@@ -313,21 +226,14 @@ ALTER TABLE `marca`
   ADD PRIMARY KEY (`id_marca`);
 
 --
--- Indices de la tabla `marca_proveedor`
---
-ALTER TABLE `marca_proveedor`
-  ADD PRIMARY KEY (`id_marca_proveedor`),
-  ADD KEY `id_marca` (`id_marca`),
-  ADD KEY `id_talla` (`id_talla`);
-
---
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`id_producto`),
   ADD KEY `id_marca` (`id_marca`),
   ADD KEY `id_talla` (`id_talla`),
-  ADD KEY `id_tipodeproducto` (`id_tipodeproducto`);
+  ADD KEY `id_tipodeproducto` (`id_tipodeproducto`),
+  ADD KEY `id_proveedor` (`id_proveedor`);
 
 --
 -- Indices de la tabla `proveedor`
@@ -353,33 +259,21 @@ ALTER TABLE `tipo_producto`
 --
 
 --
--- Filtros para la tabla `detalle_factura`
---
-ALTER TABLE `detalle_factura`
-  ADD CONSTRAINT `detalle_factura_ibfk_1` FOREIGN KEY (`id_factura`) REFERENCES `factura` (`id_factura`),
-  ADD CONSTRAINT `detalle_factura_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`);
-
---
 -- Filtros para la tabla `factura`
 --
 ALTER TABLE `factura`
-  ADD CONSTRAINT `factura_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleados` (`id`),
-  ADD CONSTRAINT `factura_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`);
-
---
--- Filtros para la tabla `marca_proveedor`
---
-ALTER TABLE `marca_proveedor`
-  ADD CONSTRAINT `marca_proveedor_ibfk_1` FOREIGN KEY (`id_talla`) REFERENCES `talla` (`id_talla`),
-  ADD CONSTRAINT `marca_proveedor_ibfk_2` FOREIGN KEY (`id_marca`) REFERENCES `marca` (`id_marca`);
+  ADD CONSTRAINT `factura_ibfk_4` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `factura_ibfk_5` FOREIGN KEY (`id_empleado`) REFERENCES `empleados` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `factura_ibfk_6` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`id_talla`) REFERENCES `talla` (`id_talla`),
-  ADD CONSTRAINT `producto_ibfk_2` FOREIGN KEY (`id_marca`) REFERENCES `marca` (`id_marca`),
-  ADD CONSTRAINT `producto_ibfk_3` FOREIGN KEY (`id_tipodeproducto`) REFERENCES `tipo_producto` (`id_tipodeproducto`);
+  ADD CONSTRAINT `producto_ibfk_4` FOREIGN KEY (`id_marca`) REFERENCES `marca` (`id_marca`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `producto_ibfk_5` FOREIGN KEY (`id_talla`) REFERENCES `talla` (`id_talla`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `producto_ibfk_6` FOREIGN KEY (`id_tipodeproducto`) REFERENCES `tipo_producto` (`id_tipodeproducto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `producto_ibfk_7` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedor` (`id_proveedor`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `proveedor`

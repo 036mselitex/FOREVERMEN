@@ -12,7 +12,7 @@
 
 
 
-            <!-- Modal -->
+            <!-- Modal -->  
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -31,7 +31,7 @@
 
 
                                 <div class="form-group col-md-12">
-                                    <label for="txtNombre">Numero Documento</label>
+                                    <label for="txtNombre">Numero De Documento</label>
                                     <input type="text" class="form-control" require name="id_cliente" id="id_cliente" placeholder="" value="<?php echo $id_cliente ?>">
                                     <br>
                                 </div>
@@ -50,13 +50,13 @@
                                 </div>
 
                                 <div class="form-group col-md-12">
-                                    <label for="txtApellidoM">Telefono </label>
+                                    <label for="txtApellidoM">Teléfono </label>
                                     <input type="tel" class="form-control" require name="telefono_cliente" id="telefono_cliente" placeholder="" value="<?php echo $telefono_cliente ?>">
 
                                 </div>
 
                                 <div class="form-group col-md-12">
-                                    <label for="txtCorreo">Direccion</label>
+                                    <label for="txtCorreo">Dirección</label>
                                     <input type="text" class="form-control" require name="direccion_cliente" id="direccion_cliente" placeholder="" value="<?php echo $direccion_cliente ?>">
                                     <br>
                                 </div>
@@ -104,11 +104,11 @@
 
                     <tr>
 
-                        <th scope="col">Identificacion</th>
+                        <th scope="col">Identificación</th>
                         <th scope="col">Nombres</th>
                         <th scope="col">Apellidos</th>
-                        <th scope="col">Telefono</th>
-                        <th scope="col">Direccion</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Dirección</th>
 
                         <th scope="col">Seleccionar</th>
                         <th scope="col">Eliminar</th>

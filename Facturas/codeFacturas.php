@@ -8,8 +8,11 @@ include("../Conexion/conexion.php");
 
 //Recibimos las variables enviadas
 $id_factura = (isset($_POST['id_factura'])) ? $_POST['id_factura'] : "";
+$fecha = (isset($_POST['fecha'])) ? $_POST['fecha'] : "";
 $id_empleado = (isset($_POST['id_empleado'])) ? $_POST['id_empleado'] : "";
 $id_cliente = (isset($_POST['id_cliente'])) ? $_POST['id_cliente'] : "";
+$id_producto = (isset($_POST['id_producto'])) ? $_POST['id_producto'] : "";
+$cantidad = (isset($_POST['cantidad'])) ? $_POST['cantidad'] : "";
 $detalle = (isset($_POST['detalle'])) ? $_POST['detalle'] : "";
 
 
@@ -28,8 +31,8 @@ switch ($accion) {
                 */
 
                 $insercionFacturas = $conn->prepare(
-                "INSERT INTO factura ( id_empleado, id_cliente, detalle) 
-                VALUES ('$id_empleado','$id_cliente','$detalle')"
+                "INSERT INTO factura ( id_factura, fecha, id_empleado, id_cliente, id_producto, cantidad, detalle) 
+                VALUES ('$id_factura','$fecha','$id_empleado','$id_cliente','$id_producto','$cantidad','$detalle')"
              );
 
 
@@ -85,6 +88,11 @@ $listaClientes = $consultaClientes->get_result();
 $consultaEmpleados = $conn->prepare("SELECT * FROM empleados");
 $consultaEmpleados->execute();
 $listaEmpleados = $consultaEmpleados->get_result();
+
+
+$consultaproducto = $conn->prepare("SELECT * FROM producto");
+$consultaproducto->execute();
+$listaProducto = $consultaproducto->get_result();
 
 //Al final de todas las consultas se cierra la conexion
 $conn->close();

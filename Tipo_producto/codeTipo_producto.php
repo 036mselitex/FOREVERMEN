@@ -60,7 +60,7 @@ switch ($accion) {
         
 
         $eliminartipo_producto = $conn->prepare(" DELETE FROM tipo_producto
-        WHERE id_tipodeproducto= '$id_tipodeproducto', ");
+        WHERE id_tipodeproducto= '$id_tipodeproducto' ");
 
         // $consultaFoto->execute();
         $eliminartipo_producto->execute();

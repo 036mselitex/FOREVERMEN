@@ -87,8 +87,36 @@
 
                                 </div>
 
+                                <div class="form-group col-md-12">
+
+                                    <label for="id_empleado">Producto</label>
+
+
+                                    <select name="id_producto" id="id_producto" class="form-control">
+
+                                        <?php
+
+                                        if ($listaProducto->num_rows > 0) {
+                                            foreach ($listaProducto as $producto) {
+                                                echo " <option value='' hidden > Seleccione el Producto</option> ";
+                                                echo " <option value='{$producto['id_producto']}'> {$producto['id_producto']} </option> ";
+                                            }
+                                        } else {
+
+                                            echo "<h2> No tenemos resultados </h2>";
+                                        }
+                                        ?>
+                                    </select>
+
+
+                                </div>
                                 <!-- FIN SELECTOR CLIENTE -->
 
+                                <div class="form-group col-md-12">
+                                    <label for="cantidad">Cantidad</label>
+                                    <input type="text" class="form-control" require name="cantidad" id="cantidad" placeholder="" value="<?php echo $cantidad ?>">
+                                    <br>
+                                </div>
 
 
                                 <div class="form-group col-md-12">
@@ -142,6 +170,8 @@
                         <th scope="col">Fecha</th>
                         <th scope="col">Empleado</th>
                         <th scope="col">Cliente</th>
+                        <th scope="col">Numero del Producto</th>
+                        <th scope="col">Cantidad</th>
                         <th scope="col">Detalle</th>
 
 
@@ -165,8 +195,10 @@
 
                                 <td> <?php echo $factura['id_factura']  ?> </td>
                                 <td> <?php echo $factura['fecha']       ?> </td>
-                                <td> <?php echo $factura['id_empleado'] ?> </td>
-                                <td> <?php echo $factura['id_cliente']  ?> </td>
+                                <td> <?php echo $factura['id_empleado']       ?> </td>
+                                <td> <?php echo $factura['id_cliente']       ?> </td>
+                                <td> <?php echo $factura['id_producto'] ?> </td>
+                                <td> <?php echo $factura['cantidad']  ?> </td>
                                 <td> <?php echo $factura['detalle']     ?> </td>
 
 
@@ -177,6 +209,8 @@
                                     <input type="hidden" name="fecha" value="<?php echo $factura['fecha'];  ?>">
                                     <input type="hidden" name="nombre_cliente" value="<?php echo $factura['id_empleado'];  ?>">
                                     <input type="hidden" name="apellido_cliente" value="<?php echo $factura['id_cliente'];  ?>">
+                                    <input type="hidden" name="id_producto" value="<?php echo $factura['id_producto'];  ?>">
+                                    <input type="hidden" name="cantidad" value="<?php echo $factura['cantidad'];  ?>">
                                     <input type="hidden" name="telefono_cliente" value="<?php echo $factura['detalle'];  ?>">
 
 
