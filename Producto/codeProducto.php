@@ -8,6 +8,7 @@ include("../Conexion/conexion.php");
 
 //Recibimos las variables enviadas
 $id_producto = (isset($_POST['id_producto'])) ? $_POST['id_producto'] : "";
+$nombre_producto = (isset($_POST['nombre_producto'])) ? $_POST['nombre_producto'] : "";
 $id_marca = (isset($_POST['id_marca'])) ? $_POST['id_marca'] : "";
 $id_talla = (isset($_POST['id_talla'])) ? $_POST['id_talla'] : "";
 $precio = (isset($_POST['precio'])) ? $_POST['precio'] : "";
@@ -29,8 +30,8 @@ switch ($accion) {
                 */
 
                 $insercionproducto = $conn->prepare(
-                "INSERT INTO producto (id_producto,id_marca, id_talla, precio, id_tipodeproducto,id_proveedor) 
-                VALUES ('$id_producto','$id_marca','$id_talla','$precio','$id_tipodeproducto','$id_proveedor')"
+                "INSERT INTO producto (id_producto,nombre_producto,id_marca, id_talla, precio, id_tipodeproducto,id_proveedor) 
+                VALUES ('$id_producto', '$nombre_producto','$id_marca','$id_talla','$precio','$id_tipodeproducto','$id_proveedor')"
              );
 
 
@@ -46,7 +47,7 @@ switch ($accion) {
 
     case 'btnModificar':
 
-        $editarproducto = $conn->prepare(" UPDATE producto SET id_marca = '$id_marca' , 
+        $editarproducto = $conn->prepare(" UPDATE producto SET nombre_producto = '$nombre_producto, 'id_marca = '$id_marca' , 
         id_talla = '$id_talla', precio = '$precio', id_tipodeproducto = '$id_tipodeproducto', id_proveedor = '$id_proveedor'
         WHERE id_producto = '$id_producto' ");
 
@@ -86,7 +87,15 @@ switch ($accion) {
 
 
 /* Consultamos todos los Clientes  */
-$consultaproducto = $conn->prepare("SELECT * FROM producto");
+$consultaproducto = $conn->prepare("SELECT * FROM producto
+INNER JOIN marca
+ON producto.id_marca = marca.id_marca
+INNER JOIN talla
+ON producto.id_talla = talla.id_talla
+INNER JOIN tipo_producto
+ON producto.id_tipodeproducto = tipo_producto.id_tipodeproducto
+INNER JOIN proveedor
+ON producto.id_proveedor = proveedor.id_proveedor");
 $consultaproducto->execute();
 $listaProducto = $consultaproducto->get_result();
 

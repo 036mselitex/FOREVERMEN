@@ -195,9 +195,9 @@
 
                                 <td> <?php echo $factura['id_factura']  ?> </td>
                                 <td> <?php echo $factura['fecha']       ?> </td>
-                                <td> <?php echo $factura['id_empleado']       ?> </td>
-                                <td> <?php echo $factura['id_cliente']       ?> </td>
-                                <td> <?php echo $factura['id_producto'] ?> </td>
+                                <td> <?php echo $factura['id_empleado']," ",$factura['nombre'], " ", $factura['apellidoP'], " ",$factura['apellidoM']          ?> </td>
+                                <td> <?php echo $factura['id_cliente'], " ", $factura['nombre_cliente'], " ", $factura['apellido_cliente']         ?> </td>
+                                <td> <?php echo $factura['id_producto']," ", $factura['nombre_producto']    ?> </td>
                                 <td> <?php echo $factura['cantidad']  ?> </td>
                                 <td> <?php echo $factura['detalle']     ?> </td>
 

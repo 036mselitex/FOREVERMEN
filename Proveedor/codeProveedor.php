@@ -84,7 +84,9 @@ switch ($accion) {
 
 
 /* Consultamos todos los Clientes  */
-$consultaproveedor = $conn->prepare("SELECT * FROM proveedor");
+$consultaproveedor = $conn->prepare("SELECT * FROM proveedor
+INNER JOIN departamento
+ON proveedor.id_proveedor = proveedor.id_proveedor");
 $consultaproveedor->execute();
 $listaProveedor = $consultaproveedor->get_result();
 

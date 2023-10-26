@@ -34,6 +34,12 @@
                                     
                                 </div>
 
+                                
+                                <div class="form-group col-md-12">
+                                    <label for="txtApellidoP">Nombre del Producto</label>
+                                    <input type="text" class="form-control" require name="nombre_producto" id="precio" placeholder="" value="<?php echo $nombre_producto ?>">
+
+                                </div>
 
                                 <div class="form-group col-md-12">
 
@@ -179,6 +185,7 @@
                     <tr>
 
                         <th scope="col">Numero del producto</th>
+                        <th scope="col">Nombre del producto</th>
                         <th scope="col">Numero de la marca</th>
                         <th scope="col">Numero de la talla</th>
                         <th scope="col">Precio del producto</th>
@@ -204,17 +211,19 @@
 
 
                                 <td> <?php echo $producto['id_producto']    ?> </td>
-                                <td> <?php echo $producto['id_marca']        ?> </td>
-                                <td> <?php echo $producto['id_talla']    ?> </td>
+                                <td> <?php echo $producto['nombre_producto']   ?> </td>
+                                <td> <?php echo $producto['id_marca']," ",$producto['nombre_marca']       ?> </td>
+                                <td> <?php echo $producto['id_talla']," ",$producto['nombre_talla']     ?> </td>
                                 <td> <?php echo $producto['precio'] ?> </td>
-                                <td> <?php echo $producto['id_tipodeproducto'] ?> </td>
-                                <td> <?php echo $producto['id_proveedor']    ?> </td>
+                                <td> <?php echo $producto['id_tipodeproducto']," ",$producto['nombre_tipodeproducto']  ?> </td>
+                                <td> <?php echo $producto['id_proveedor']," ",$producto['nombre_proveedor']     ?> </td>
 
 
                                 <!-- Este Formulario se utiliza para editar los registros -->
                                 <form action="" method="post">
 
                                   <input type="hidden" name="id_producto" value="<?php echo $producto['id_producto'];  ?>">
+                                  <input type="hidden" name="nombre_producto" value="<?php echo $producto['nombre_producto'];  ?>">
                                     <input type="hidden" name="id_marca" value="<?php echo $producto['id_marca'];  ?>">
                                     <input type="hidden" name="id_talla" value="<?php echo $producto['id_talla'];  ?>">
                                     <input type="hidden" name="precio" value="<?php echo $producto['precio'];  ?>">

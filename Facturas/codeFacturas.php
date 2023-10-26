@@ -8,7 +8,6 @@ include("../Conexion/conexion.php");
 
 //Recibimos las variables enviadas
 $id_factura = (isset($_POST['id_factura'])) ? $_POST['id_factura'] : "";
-$fecha = (isset($_POST['fecha'])) ? $_POST['fecha'] : "";
 $id_empleado = (isset($_POST['id_empleado'])) ? $_POST['id_empleado'] : "";
 $id_cliente = (isset($_POST['id_cliente'])) ? $_POST['id_cliente'] : "";
 $id_producto = (isset($_POST['id_producto'])) ? $_POST['id_producto'] : "";
@@ -31,8 +30,8 @@ switch ($accion) {
                 */
 
                 $insercionFacturas = $conn->prepare(
-                "INSERT INTO factura ( id_factura, fecha, id_empleado, id_cliente, id_producto, cantidad, detalle) 
-                VALUES ('$id_factura','$fecha','$id_empleado','$id_cliente','$id_producto','$cantidad','$detalle')"
+                "INSERT INTO factura ( id_empleado, id_cliente, id_producto, cantidad, detalle) 
+                VALUES ('$id_empleado','$id_cliente','$id_producto','$cantidad','$detalle')"
              );
 
 
@@ -71,9 +70,17 @@ switch ($accion) {
 
 
 /* Consultamos todas las Facturas  */
-$consultaFacturas = $conn->prepare("SELECT * FROM factura");
+$consultaFacturas = $conn->prepare("SELECT * FROM factura
+INNER JOIN empleados
+on factura.id_empleado = empleados.id
+INNER JOIN clientes
+ON factura.id_cliente = clientes.id_cliente
+INNER JOIN producto
+on factura.id_producto = producto.id_producto
+");
 $consultaFacturas->execute();
 $listaFacturas = $consultaFacturas->get_result();
+
 
 
 

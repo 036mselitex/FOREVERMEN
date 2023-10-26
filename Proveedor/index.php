@@ -133,7 +133,7 @@
 
                                 <td> <?php echo $proveedor['id_proveedor']        ?> </td>
                                 <td> <?php echo $proveedor['nombre_proveedor']    ?> </td>
-                                <td> <?php echo $proveedor['id_departamento'] ?> </td>
+                                <td> <?php echo $proveedor['id_departamento']," ", $proveedor['nombre_departamento'] ?> </td>
 
 
 
