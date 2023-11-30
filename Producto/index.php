@@ -34,14 +34,7 @@
                                     
                                 </div>
 
-                                
-                                <div class="form-group col-md-12">
-                                    <label for="txtApellidoP">Nombre del Producto</label>
-                                    <input type="text" class="form-control" require name="nombre_producto" id="precio" placeholder="" value="<?php echo $nombre_producto ?>">
-
-                                </div>
-
-                                <div class="form-group col-md-12">
+                               <div class="form-group col-md-12">
 
                                     <label for="id_marca">Numero de la marca</label>
 
@@ -65,6 +58,13 @@
 
                                 </div>
 
+
+                                <div class="form-group col-md-12">
+                                    <label for="txtCorreo">Nombre del Producto</label>
+                                    <input type="text" class="form-control" require name="nombre_producto" id="nombre_producto" placeholder="" value="<?php echo $nombre_producto ?>">
+                                    
+                                </div>
+                                
 
                                     <div class="form-group col-md-12">
 
@@ -211,8 +211,8 @@
 
 
                                 <td> <?php echo $producto['id_producto']    ?> </td>
-                                <td> <?php echo $producto['nombre_producto']   ?> </td>
-                                <td> <?php echo $producto['id_marca']," ",$producto['nombre_marca']       ?> </td>
+                                <td> <?php echo $producto['id_marca']," ",$producto['nombre_marca']    ?> </td>
+                                <td> <?php echo $producto['nombre_producto']     ?> </td>
                                 <td> <?php echo $producto['id_talla']," ",$producto['nombre_talla']     ?> </td>
                                 <td> <?php echo $producto['precio'] ?> </td>
                                 <td> <?php echo $producto['id_tipodeproducto']," ",$producto['nombre_tipodeproducto']  ?> </td>
@@ -223,8 +223,8 @@
                                 <form action="" method="post">
 
                                   <input type="hidden" name="id_producto" value="<?php echo $producto['id_producto'];  ?>">
-                                  <input type="hidden" name="nombre_producto" value="<?php echo $producto['nombre_producto'];  ?>">
-                                    <input type="hidden" name="id_marca" value="<?php echo $producto['id_marca'];  ?>">
+                                  <input type="hidden" name="id_marca" value="<?php echo $producto['id_marca'];  ?>">
+                                    <input type="hidden" name="nombre_producto" value="<?php echo $producto['nombre_producto'];  ?>">
                                     <input type="hidden" name="id_talla" value="<?php echo $producto['id_talla'];  ?>">
                                     <input type="hidden" name="precio" value="<?php echo $producto['precio'];  ?>">
                                     <input type="hidden" name="id_tipodeproducto" value="<?php echo $producto['id_tipodeproducto'];  ?>">

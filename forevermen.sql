@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 20-10-2023 a las 19:23:15
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 30-11-2023 a las 20:10:16
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,14 @@ CREATE TABLE `clientes` (
   `apellido_cliente` varchar(30) NOT NULL,
   `telefono_cliente` varchar(100) NOT NULL,
   `direccion_cliente` varchar(125) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`id_cliente`, `nombre_cliente`, `apellido_cliente`, `telefono_cliente`, `direccion_cliente`) VALUES
+(1235554, 'Mateo', 'Arias', '325564825', 'Genesis mz 9 # 80');
 
 -- --------------------------------------------------------
 
@@ -42,17 +49,16 @@ CREATE TABLE `clientes` (
 --
 
 CREATE TABLE `departamento` (
-  `id_departamento` int(11) NOT NULL,
+  `id_departamento` bigint(20) NOT NULL,
   `nombre_departamento` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `departamento`
 --
 
 INSERT INTO `departamento` (`id_departamento`, `nombre_departamento`) VALUES
-(1, 'armenia'),
-(2, 'bogota');
+(135, 'Pereira');
 
 -- --------------------------------------------------------
 
@@ -67,7 +73,14 @@ CREATE TABLE `empleados` (
   `apellidoM` varchar(250) NOT NULL,
   `correo` varchar(100) NOT NULL,
   `foto` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `empleados`
+--
+
+INSERT INTO `empleados` (`id`, `nombre`, `apellidoP`, `apellidoM`, `correo`, `foto`) VALUES
+(1553354, 'Jostin', 'Herrera', 'Uribe', 'jostinherrerauribe@gmail.com', 'caraFeliz.jpeg');
 
 -- --------------------------------------------------------
 
@@ -83,7 +96,15 @@ CREATE TABLE `factura` (
   `id_producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `detalle` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `factura`
+--
+
+INSERT INTO `factura` (`id_factura`, `fecha`, `id_empleado`, `id_cliente`, `id_producto`, `cantidad`, `detalle`) VALUES
+(8, '2023-11-15 14:32:33', 1553354, 1235554, 58, 1, 'Compra de una sudadera negra'),
+(9, '2023-11-15 15:31:09', 1553354, 1235554, 78, 2, 'Compra de una pantaloneta color negra');
 
 -- --------------------------------------------------------
 
@@ -94,23 +115,14 @@ CREATE TABLE `factura` (
 CREATE TABLE `marca` (
   `id_marca` int(11) NOT NULL,
   `nombre_marca` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `marca`
 --
 
 INSERT INTO `marca` (`id_marca`, `nombre_marca`) VALUES
-(1, 'balenciaga'),
-(2, 'nike'),
-(3, 'puma'),
-(4, 'adidas'),
-(5, 'hunder harmo'),
-(6, 'oakley'),
-(7, 'gucci'),
-(8, 'disel'),
-(9, 'louis voitton'),
-(10, 'dc');
+(78, 'DC');
 
 -- --------------------------------------------------------
 
@@ -121,11 +133,20 @@ INSERT INTO `marca` (`id_marca`, `nombre_marca`) VALUES
 CREATE TABLE `producto` (
   `id_producto` int(11) NOT NULL,
   `id_marca` int(11) NOT NULL,
+  `nombre_producto` varchar(100) NOT NULL,
   `id_talla` int(11) NOT NULL,
   `precio` float NOT NULL,
   `id_tipodeproducto` int(11) NOT NULL,
   `id_proveedor` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id_producto`, `id_marca`, `nombre_producto`, `id_talla`, `precio`, `id_tipodeproducto`, `id_proveedor`) VALUES
+(58, 78, 'Camiseta blanca', 98, 55000, 56, 65),
+(78, 78, 'Camiseta Negra', 98, 50000, 56, 65);
 
 -- --------------------------------------------------------
 
@@ -136,8 +157,15 @@ CREATE TABLE `producto` (
 CREATE TABLE `proveedor` (
   `id_proveedor` int(11) NOT NULL,
   `nombre_proveedor` varchar(100) NOT NULL,
-  `id_departamento` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_departamento` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`id_proveedor`, `nombre_proveedor`, `id_departamento`) VALUES
+(65, 'Bodegazo', 135);
 
 -- --------------------------------------------------------
 
@@ -148,19 +176,14 @@ CREATE TABLE `proveedor` (
 CREATE TABLE `talla` (
   `id_talla` int(11) NOT NULL,
   `nombre_talla` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `talla`
 --
 
 INSERT INTO `talla` (`id_talla`, `nombre_talla`) VALUES
-(1, 's'),
-(2, 'm'),
-(3, 'l'),
-(4, 'xl'),
-(5, 'xxl'),
-(6, 'xxxl');
+(98, 'XL');
 
 -- --------------------------------------------------------
 
@@ -171,22 +194,14 @@ INSERT INTO `talla` (`id_talla`, `nombre_talla`) VALUES
 CREATE TABLE `tipo_producto` (
   `id_tipodeproducto` int(11) NOT NULL,
   `nombre_tipodeproducto` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tipo_producto`
 --
 
 INSERT INTO `tipo_producto` (`id_tipodeproducto`, `nombre_tipodeproducto`) VALUES
-(1, 'camiseta'),
-(2, 'camisa'),
-(3, 'pantaloneta'),
-(4, 'sudadera'),
-(5, 'cadena'),
-(6, 'boxer'),
-(7, 'medias'),
-(8, 'gorra'),
-(9, 'gafas');
+(56, 'Sudadera');
 
 --
 -- Índices para tablas volcadas
@@ -255,6 +270,16 @@ ALTER TABLE `tipo_producto`
   ADD PRIMARY KEY (`id_tipodeproducto`);
 
 --
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `factura`
+--
+ALTER TABLE `factura`
+  MODIFY `id_factura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -279,7 +304,7 @@ ALTER TABLE `producto`
 -- Filtros para la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  ADD CONSTRAINT `proveedor_ibfk_1` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id_departamento`);
+  ADD CONSTRAINT `proveedor_ibfk_4` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id_departamento`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
